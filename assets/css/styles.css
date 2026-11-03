@@ -648,3 +648,7 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
 }
+
+/* Sculpture treatment inside the existing intro circle. */
+.geo-circle{overflow:hidden;background:#15131b;isolation:isolate;box-shadow:0 0 80px #b6266812}
+.ion-sculpture{width:100%;height:100%;display:block;object-fit:contain;opacity:.96;mix-blend-mode:screen;mask-image:radial-gradient(circle at center,#000 56%,#000d 72%,transparent 100%);-webkit-mask-image:radial-gradient(circle at center,#000 56%,#000d 72%,transparent 100%);background:url('../sculpture/frame-000.webp') center/contain no-repeat}

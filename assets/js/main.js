@@ -81,7 +81,7 @@
 
     /* A | Opening → typographic takeover → wordmark field */
     var open = $(".scene-open");
-    Motion.pinned(open, desktop ? "+=200%" : "+=120%", function (tl) {
+    Motion.pinned(open, desktop ? "+=230%" : "+=180%", function (tl) {
       tl.to(".hero-copy", { y: -140, opacity: 0, scale: .94, filter: "blur(6px)", duration: .35 }, 0)
         .to(".scroll-cue", { opacity: 0, duration: .1 }, 0)
         .to(".geo-letter", { scale: 2.1, xPercent: -30, yPercent: -8, duration: .55 }, 0)
@@ -98,6 +98,12 @@
         // sustained wordmark moment
         .to(".field-wordmark", { scale: 1.06, duration: .3 }, .7)
         .to(".fw-charge i", { scale: 1.35, duration: .3 }, .7);
+      // Keep the intro visible while the sculpture disassembles, then run the original transition.
+      if(window.IonSculpture){
+        tl.shiftChildren(.65,true,0);
+        tl.to(IonSculpture.state,{frame:IonSculpture.lastFrame,duration:.65,ease:"none",onUpdate:IonSculpture.render},0);
+      }
+
     });
 
     /* B | Wordmark field → red editorial tile + dark media tile */

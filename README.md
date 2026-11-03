@@ -22,3 +22,10 @@ python3 -m http.server 8000
 ## Motion
 
 Animations are driven by scroll progress (GSAP ScrollTrigger with scrub), so they reverse when you scroll back up. Pinned scenes run only on screens wider than 760px. With `prefers-reduced-motion: reduce`, no animation runs and every section shows in a plain linear order.
+
+
+## Intro sculpture
+
+The intro circle contains a scroll-controlled sculpture sequence from the user-supplied `vr_sculpture_disassembling_03309_Seedance_25.mp4`. It ends at full expansion, approximately five seconds into the source clip; the hold and closing portion are omitted. Continuing to scroll starts the existing ION transition. Scrolling backward reverses the sequence.
+
+`assets/js/sculpture.js` renders 61 full-resolution 1440 × 1440 WebP frames. The sequence is connected to the opening GSAP timeline in `assets/js/main.js`. Reduced motion shows its initial still frame.
