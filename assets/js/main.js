@@ -57,11 +57,11 @@
       var email = $("#demo-email");
       var msg = $("#demo-msg");
       if (!email.value || !email.checkValidity()) {
-        msg.textContent = "Enter a work email like name@yourlab.com so we can send a time.";
+        msg.textContent = "Enter a work email like name@yourlab.com so we can reply.";
         email.focus();
         return;
       }
-      msg.textContent = "Request received. We'll email " + email.value + " with demo times within one business day.";
+      msg.textContent = "Thanks. We'll reply to " + email.value + " within one business day.";
       form.reset();
     });
   }
@@ -161,6 +161,10 @@
       Motion.reveal($(".const-statement"), { y: 30, start: "top 95%", end: "top 70%" });
     }
 
+    /* IONLOGS product */
+    Motion.reveal($(".product-copy"), { y: 60, start: "top 95%", end: "top 55%" });
+    Motion.stagger($$(".product-points li"), { y: 50, each: .1, trigger: ".product-points", start: "top 95%", end: "top 55%" });
+
     /* About statement: words light up with scroll progress */
     var statement = $(".statement");
     var sw = Motion.splitWords(statement);
@@ -194,12 +198,15 @@
     /* Credibility: cards rise through perspective at different depths */
     $$(".card").forEach(function (card) {
       var d = parseFloat(card.style.getPropertyValue("--depth")) || 1;
-      gsap.fromTo(card,
-        { y: (desktop ? 220 : 60) * d, rotateX: desktop ? 28 : 0, opacity: 0 },
-        {
-          y: desktop ? -50 * d : 0, rotateX: 0, opacity: 1, ease: "none",
-          scrollTrigger: { trigger: ".cards", start: "top 100%", end: "bottom 50%", scrub: true }
-        });
+      // cards settle by the time the section reaches the top, so the Compliance link lands on them formed
+      gsap.fromTo(card, { rotateX: desktop ? 28 : 0, opacity: 0 }, {
+        rotateX: 0, opacity: 1, ease: "none",
+        scrollTrigger: { trigger: ".cards", start: "top 100%", end: "top 55%", scrub: true }
+      });
+      gsap.fromTo(card, { y: (desktop ? 220 : 60) * d }, {
+        y: desktop ? -50 * d : 0, ease: "none",
+        scrollTrigger: { trigger: ".cards", start: "top 100%", end: "bottom 50%", scrub: true }
+      });
     });
     Motion.reveal($(".cred-head"), { y: 40, start: "top 90%", end: "top 55%" });
 
@@ -208,6 +215,43 @@
     Motion.parallax($(".foot-mark"), .3, { trigger: ".site-footer" });
 
     return function () { document.documentElement.classList.remove("motion"); };
+  });
+
+  /* In-page links: a pinned scene is entered partway through its timeline, where its content
+     has formed, instead of at its first (empty) frame. Other sections land at their top. */
+  var scrollTargetFor = function (target) {
+    if (target.id === "top") return 0;
+    var y = target.getBoundingClientRect().top + window.scrollY;
+    if (window.ScrollTrigger) {
+      ScrollTrigger.getAll().forEach(function (st) {
+        if (st.pin === target) y = st.start + (st.end - st.start) * 0.75;
+      });
+    }
+    return Math.max(0, Math.round(y));
+  };
+  var goTo = function (id, smooth) {
+    var target = id && document.getElementById(id);
+    if (!target) return false;
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top: scrollTargetFor(target), behavior: smooth && !reduce ? "smooth" : "auto" });
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    return true;
+  };
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="#"]');
+    if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    var id = a.getAttribute("href").slice(1);
+    if (!id || id === "main") return;
+    if (goTo(id, true)) {
+      e.preventDefault();
+      if (history.pushState) history.pushState(null, "", "#" + id);
+    }
+  });
+  // A shared link such as ionlaboratories.com/#platform: wait for pins to be measured, then land.
+  window.addEventListener("load", function () {
+    var id = location.hash.slice(1);
+    if (id && id !== "top") setTimeout(function () { goTo(id, false); }, 120);
   });
 
   // Fonts change line lengths; recompute trigger positions once they are in.

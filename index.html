@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ION Laboratories</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="ION Laboratories is the lab operations platform for regulated labs: sample tracking, LIMS, instrument data, QC and compliance in one system.">
+<meta name="description" content="ION Laboratories builds lab operations software for regulated labs, including IONLOGS, the operations log for mass-spec labs. Sample tracking, LIMS, instrument data, QC and compliance.">
 <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600&display=swap">
-<link rel="stylesheet" href="assets/css/styles.css?v=20261102-sculpture">
+<link rel="stylesheet" href="assets/css/styles.css?v=20261106-ionlogs">
 <!--HEAD-END-->
 </head>
 <body>
@@ -28,11 +28,12 @@
     </button>
     <ul class="nav-list" id="nav-list">
       <li><a href="#platform">Platform</a></li>
+      <li><a href="#ionlogs">IONLOGS</a></li>
       <li><a href="#modules">Modules</a></li>
       <li><a href="#compliance">Compliance</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="btn btn-outline nav-cta" href="#contact">Book a demo</a>
+    <a class="btn btn-outline nav-cta" href="#contact">Get in touch</a>
   </nav>
 </header>
 
@@ -50,7 +51,7 @@
         <span class="geo-orbit"></span>
       </div>
       <div class="hero-copy">
-        <p class="kicker">LIMS · Sample tracking · Instrument data · QC</p>
+        <p class="kicker">Laboratory software · Makers of IONLOGS</p>
         <h1 id="hero-title" class="hero-title">
           <span class="line">Lab operations</span>
           <span class="line line-indent">for the science</span>
@@ -58,7 +59,7 @@
         </h1>
         <p class="hero-lede">One system for every sample, run and result. From accessioning to the signed report, with the audit trail written as you work.</p>
         <div class="hero-actions">
-          <a class="btn btn-solid" href="#contact">Book a demo</a>
+          <a class="btn btn-solid" href="#ionlogs">Explore IONLOGS</a>
           <a class="btn btn-ghost" href="#platform">See the platform</a>
         </div>
       </div>
@@ -135,7 +136,28 @@
         <li style="--x:14%;--y:80%;--mx:46%;--d:.7" class="w-sm">Inventory</li>
         <li style="--x:64%;--y:82%;--mx:20%;--d:1.3">Analytics</li>
       </ul>
-      <p class="const-statement">ION Laboratories replaces the spreadsheet, the paper binder and the three systems that never talked to each other. <span class="hl">One record</span>, from the first barcode to the <span class="hl">signed report</span>.</p>
+      <p class="const-statement">ION Laboratories builds software that replaces the spreadsheet, the paper binder and the three systems that never talked to each other. <span class="hl">One record</span>, from the first barcode to the <span class="hl">signed report</span>.</p>
+    </div>
+  </section>
+
+  <!-- Product: IONLOGS, a solution by ION Laboratories -->
+  <section class="scene scene-product" id="ionlogs" aria-labelledby="product-title">
+    <div class="product">
+      <div class="product-copy">
+        <p class="kicker">A solution by ION Laboratories</p>
+        <h2 id="product-title" class="product-title">ION<span>LOGS</span></h2>
+        <p class="product-lede">The operations log for mass-spec labs. Bench rounds in under a minute, reagent lots you can recall in one search, and reports where every count opens its evidence.</p>
+        <div class="product-actions">
+          <a class="btn btn-solid" href="https://www.ionlogs.com/#demo" target="_blank" rel="noopener">Request an IONLOGS demo <span class="sr-only">(opens ionlogs.com in a new tab)</span><span aria-hidden="true">↗</span></a>
+          <a class="btn btn-ghost" href="https://www.ionlogs.com" target="_blank" rel="noopener">Visit ionlogs.com <span class="sr-only">(opens in a new tab)</span></a>
+        </div>
+      </div>
+      <ul class="product-points">
+        <li><b>Rounds &amp; tasks</b><span>Each check keeps its own value, person, time and audit trail.</span></li>
+        <li><b>Reagent traceability</b><span>Recall a lot and see every run it touched.</span></li>
+        <li><b>Columns &amp; wear parts</b><span>Know a column is tired before your QC does.</span></li>
+        <li><b>Reports &amp; evidence</b><span>Every number on a report opens the records behind it.</span></li>
+      </ul>
     </div>
   </section>
 
@@ -295,7 +317,7 @@
   <!-- Contact / CTA -->
   <section class="scene scene-cta" id="contact" aria-labelledby="cta-title">
     <h2 id="cta-title" class="cta-title">Bring your<br><span class="hl">messiest</span> workflow.</h2>
-    <p class="cta-sub">In a 30-minute demo we map one of your real workflows into ION: a test, a matrix, the instrument and the report.</p>
+    <p class="cta-sub">Tell us how your lab runs today: the tests, the instruments, the paperwork. We'll show you where ION Laboratories software fits.</p>
     <form class="cta-form" id="demo-form" novalidate>
       <label for="demo-email" class="sr-only">Work email</label>
       <input id="demo-email" name="email" type="email" placeholder="you@yourlab.com" autocomplete="email" required>
@@ -304,11 +326,13 @@
         <option>Clinical diagnostics</option>
         <option>Environmental testing</option>
         <option>Food &amp; beverage</option>
+        <option>Mass spectrometry</option>
         <option>Biotech R&amp;D</option>
         <option>Other</option>
       </select>
-      <button class="btn btn-solid" type="submit">Book a demo</button>
+      <button class="btn btn-solid" type="submit">Get in touch</button>
       <p class="form-msg" id="demo-msg" role="status" aria-live="polite"></p>
+      <p class="cta-alt">Want to see IONLOGS? <a href="https://www.ionlogs.com/#demo" target="_blank" rel="noopener">Request a demo on ionlogs.com <span aria-hidden="true">↗</span><span class="sr-only">(opens in a new tab)</span></a></p>
     </form>
   </section>
 </main>
@@ -318,11 +342,15 @@
   <div class="foot-cols">
     <div>
       <p class="foot-h">ION Laboratories</p>
-      <p>Lab operations software for clinical, environmental, food safety and research labs.</p>
+      <p>The software company behind IONLOGS. Lab operations software for clinical, environmental, food safety and research labs.</p>
     </div>
     <div>
       <p class="foot-h">Platform</p>
       <ul><li><a href="#platform">Overview</a></li><li><a href="#modules">Modules</a></li><li><a href="#compliance">Compliance</a></li></ul>
+    </div>
+    <div>
+      <p class="foot-h">Products</p>
+      <ul><li><a href="https://www.ionlogs.com" target="_blank" rel="noopener">IONLOGS ↗<span class="sr-only"> (opens in a new tab)</span></a></li></ul>
     </div>
     <div>
       <p class="foot-h">Contact</p>
@@ -336,7 +364,7 @@
 <script src="assets/vendor/ScrollTrigger.min.js"></script>
 <script src="assets/js/motion.js"></script>
 <script src="assets/js/sculpture.js?v=20261102-expanded"></script>
-<script src="assets/js/main.js?v=20261102-expanded"></script>
+<script src="assets/js/main.js?v=20261106-ionlogs"></script>
 <!--BODY-END-->
 </body>
 </html>
