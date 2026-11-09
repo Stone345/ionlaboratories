@@ -315,8 +315,8 @@ ul, ol { margin: 0; padding: 0; list-style: none; }
 .media-meta .tile-label { color: var(--accent); }
 
 /* ---------- C | Gap ---------- */
-.scene-gap { height: 70vh; background: var(--ink); display: grid; place-items: center; }
-.gap-line { width: 1px; height: 40vh; background: var(--line); position: relative; overflow: hidden; }
+.scene-gap { height: 36vh; background: var(--ink); display: grid; place-items: center; }
+.gap-line { width: 1px; height: 22vh; background: var(--line); position: relative; overflow: hidden; }
 .gap-line span { position: absolute; inset: 0; background: var(--accent); transform-origin: top; transform: scaleY(.25); }
 
 /* ---------- D | Constellation ---------- */

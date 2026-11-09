@@ -131,13 +131,29 @@
     /* C | Black interstitial: a deliberate pause, marked by one growing line */
     gsap.fromTo(".gap-line span", { scaleY: 0 }, {
       scaleY: 1, ease: "none",
-      scrollTrigger: { trigger: ".scene-gap", start: "top 70%", end: "bottom 40%", scrub: true }
+      scrollTrigger: { trigger: ".scene-gap", start: "top 85%", end: "bottom 55%", scrub: true }
     });
 
     /* D | Services constellation */
     var words = $$(".const-words li");
     if (desktop) {
-      Motion.pinned($(".scene-constellation"), "+=170%", function (tl) {
+      // The pin is its own trigger (same start and length as Motion.pinned), so in-page links
+      // still find it through `st.pin` and land 75% into it, with every word formed. The
+      // animation starts earlier, while the section scrolls in, so there is no stretch of
+      // empty black between "Every sample, accounted for" and the words.
+      var constSection = $(".scene-constellation");
+      var constPin = ScrollTrigger.create({
+        trigger: constSection, start: "top top", end: "+=170%",
+        pin: true, anticipatePin: 1, invalidateOnRefresh: true
+      });
+      var constTl = gsap.timeline({
+        defaults: { ease: "none" },
+        scrollTrigger: {
+          trigger: constSection, start: "top 75%", end: function () { return constPin.end; },
+          scrub: 0.6, invalidateOnRefresh: true
+        }
+      });
+      (function (tl) {
         tl.fromTo(".orb", { xPercent: -40, scale: .5, opacity: 0 }, { xPercent: 0, scale: 1, opacity: 1, duration: .45 }, 0);
         words.forEach(function (w, i) {
           var d = parseFloat(w.style.getPropertyValue("--d")) || 1;
@@ -151,7 +167,7 @@
         });
         tl.fromTo(".const-statement", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: .22 }, .5)
           .to(".orb", { yPercent: -18, scale: 1.12, duration: .4 }, .62);
-      });
+      })(constTl);
     } else {
       gsap.fromTo(".orb", { xPercent: -30, opacity: 0 }, {
         xPercent: 0, opacity: 1, ease: "none",
